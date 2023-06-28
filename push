@@ -1,0 +1,18 @@
+files=(*)
+total=${#files[@]}
+i=0
+for f in "${files[@]}"; do
+    i=$(( i + 1 ))
+    echo index $i
+    echo total $total
+    echo "- Processing file: $f"
+    
+    git add $f
+
+    if (( $i % 10 == 0 )); then
+    	echo "-------------------------------"
+        git commit -m '.'
+	git push
+    fi
+done
+
